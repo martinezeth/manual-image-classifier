@@ -1,0 +1,25 @@
+# Ignore the temporary storage directory (Script will generate this automatically upon first time use)
+imageClassifierTemp/
+
+# Ignore the config file
+config.ini
+
+# Ignore Python compiled files
+*.pyc
+
+# Ignore virtual environment directories
+venv/
+.env
+
+# System specific files
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Python cache directory
+__pycache__/
+
+# Old README that I'm keeping around in case its needed for creating conda environment:
+README2.txt
