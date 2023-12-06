@@ -18,12 +18,14 @@ This script is a tool for manually classifying images into predefined categories
 
 ## Conda Environment
 You will need to run the following command to generate a Conda enviroment:
-```conda create -n manual-classifier python=3 matplotlib pillow```
+```conda create -n manual-classifier python=3```
 Then, activate your environment using the next command:
 ```conda activate manual-classifier```
+Install dependencies with the command:
+```pip install -r requirements.txt```
 
 ## Configuration
-Prior to first using this script, there are a few things that need to be configured.
+Prior to first using this script, there are a few things that need to be configured:
 1. Create a .ini file named ```config.ini``` within the project directory.
 2. Copy and paste the contents of the [sample.config.ini](sample.config.ini) into your created ```config.ini``` file.
 3. Make sure to put the server hostname, your SSH username and password in the respective fields. The ```classifications_path``` should be the path to the 'Classifications' folder on your local machine.
