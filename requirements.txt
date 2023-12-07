@@ -1,21 +1,11 @@
 bcrypt==4.1.1
 cffi==1.16.0
-contourpy @ file:///Users/builder/cbouss/perseverance-python-buildout/croot/contourpy_1699238887559/work
 cryptography==41.0.7
-cycler @ file:///tmp/build/80754af9/cycler_1637851556182/work
 fonttools==4.25.0
-kiwisolver @ file:///Users/builder/cbouss/perseverance-python-buildout/croot/kiwisolver_1699239145780/work
 matplotlib==3.8.2
-munkres==1.1.4
-numpy @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_c0s16d4ba1/croot/numpy_and_numpy_base_1701295077539/work/dist/numpy-1.26.2-cp312-cp312-macosx_11_0_arm64.whl#sha256=3ef98b52001fc0e2266d3454005c31e553aa633ec4aaf3ac3aef67a63e51e807
-packaging @ file:///Users/builder/cbouss/perseverance-python-buildout/croot/packaging_1699237023876/work
+numpy
 paramiko==3.3.1
-Pillow @ file:///Users/builder/cbouss/perseverance-python-buildout/croot/pillow_1699239265580/work
+Pillow
 pycparser==2.21
 PyNaCl==1.5.0
-pyparsing @ file:///Users/builder/cbouss/perseverance-python-buildout/croot/pyparsing_1699239441347/work
-python-dateutil @ file:///tmp/build/80754af9/python-dateutil_1626374649649/work
-setuptools==68.0.0
-six @ file:///tmp/build/80754af9/six_1644875935023/work
-tornado @ file:///Users/builder/cbouss/perseverance-python-buildout/croot/tornado_1699243541634/work
-wheel==0.41.2
+python-dateutil
