@@ -22,7 +22,7 @@ def download_image(ssh_client, remote_directory, image_name, local_directory):
     remote_image_path = os.path.join(remote_directory, image_name)
     ftp_client = ssh_client.open_sftp()
     try:
-        print(f"Downloading {remote_image_path} to {local_image_path}")
+        print(f"\nDownloading {remote_image_path} to {local_image_path}")
         ftp_client.get(remote_image_path, local_image_path)
         print(f"Download completed. File size: {os.path.getsize(local_image_path)} bytes")
     except Exception as e:

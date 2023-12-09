@@ -80,12 +80,36 @@ def original_classification_mode(ssh_client):
 
     temp_local_directory = ensure_temp_directory_exists()
 
-    for image_name in images:
+    index = 0
+    while index < len(images):
+        image_name = images[index]
+
+        if image_name.lower().endswith(('.arw', '.orf', '.rw2')):
+            print(f"Skipping file: {image_name} due to unsupported file format...")
+            index += 1
+            continue
+
         local_image_path = ssh_handler.download_image(ssh_client, remote_directory, image_name, temp_local_directory)
-        img = plt.imread(local_image_path)
-        plt.imshow(img)
-        plt.axis('off')
-        plt.show(block=False)
+
+        try:
+            img = plt.imread(local_image_path)
+            plt.imshow(img)
+            plt.axis('off')
+            plt.show(block=False)
+        except Exception as e:
+            print(f"Error reading image file {image_name}: {e}")
+            index += 1
+            continue
+
+        try: 
+            img = plt.imread(local_image_path)
+            plt.imshow(img)
+            plt.axis('off')
+            plt.show(block=False)
+        except Exception as e:
+            print(f"Error reading image file {image_name}: {e}")
+        index += 1
+            
 
         categories = getCategories(baseDirectory)
         print("Available Classes: ")
@@ -98,12 +122,19 @@ def original_classification_mode(ssh_client):
             plt.close()  # Close image display
             return  # Return to the main menu
         elif user_input.lower() == 'd':
-            plt.close()  # Close image display
+            plt.close()
+            index += 1
             continue  # Skip to the next image
         
-        category_index = int(user_input)
-        category = categories[category_index]
-        plt.close()  # Close image display
+        try:
+            category_index = int(user_input)
+            category = categories[category_index]
+        except ValueError:
+             print("Invalid input. Enter a valid category index.")
+             plt.close()
+             continue
+        
+        plt.close()
 
         # Move the image on the server to the category directory
         destination_directory = f'/data/solareclipse/Classifications/{category}'
@@ -121,6 +152,8 @@ def original_classification_mode(ssh_client):
         # Copy the image from the temporary local directory to the final local category folder
         local_category_path = os.path.join(baseDirectory, category, image_name)
         os.rename(local_image_path, local_category_path)
+
+        index += 1
 
 
 
@@ -140,8 +173,9 @@ def single_category_mode(ssh_client):
     index = 0
     while index < len(images):
         image_name = images[index]
-        if image_name.lower().endswith('.arw'):
-             print(f"Skipping .arw file: {image_name}")
+        # Skip .arw, .orf and .rw2 files
+        if image_name.lower().endswith(('.arw', '.orf', '.rw2')):
+             print(f"Skipping file: {image_name} due to unsupported file format...")
              index += 1 
              continue
 
