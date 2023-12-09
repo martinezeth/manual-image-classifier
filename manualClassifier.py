@@ -140,6 +140,12 @@ def single_category_mode(ssh_client):
     index = 0
     while index < len(images):
         image_name = images[index]
+        if image_name.lower().endswith('.arw'):
+             print(f"Skipping .arw file: {image_name}")
+             index += 1 
+             continue
+
+
         local_image_path = ssh_handler.download_image(ssh_client, remote_directory, image_name, temp_local_directory)
         img = plt.imread(local_image_path)
         plt.imshow(img)
