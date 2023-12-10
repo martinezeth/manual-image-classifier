@@ -84,7 +84,7 @@ def original_classification_mode(ssh_client):
     while index < len(images):
         image_name = images[index]
 
-        if image_name.lower().endswith(('.arw', '.orf', '.rw2')):
+        if image_name.lower().endswith(('.arw', '.orf', '.rw2', '.tif')):
             print(f"Skipping file: {image_name} due to unsupported file format...")
             index += 1
             continue
@@ -174,7 +174,7 @@ def single_category_mode(ssh_client):
     while index < len(images):
         image_name = images[index]
         # Skip .arw, .orf and .rw2 files
-        if image_name.lower().endswith(('.arw', '.orf', '.rw2')):
+        if image_name.lower().endswith(('.arw', '.orf', '.rw2', '.tif')):
              print(f"Skipping file: {image_name} due to unsupported file format...")
              index += 1 
              continue
