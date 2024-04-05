@@ -12,9 +12,21 @@ absOutPath = ""
 outDirectory = absOutPath + "output/"
 absInPath = baseDirectory
 
+# def getCategories(directory):
+# 	""" Returns a list of subdirectories (classification categories) in the given directory """
+# 	return [d for d in os.listdir(directory) if os.path.isdir(os.path.join(directory, d))]
+
 def getCategories(directory):
-	""" Returns a list of subdirectories (classification categories) in the given directory """
-	return [d for d in os.listdir(directory) if os.path.isdir(os.path.join(directory, d))]
+    """ Returns a dictionary of subdirectories and their current total file counts in the given directory """
+    categories = {}
+    for d in os.listdir(directory):
+        dir_path = os.path.join(directory, d)
+        if os.path.isdir(dir_path):
+            # Count all files within the subdirectory
+            all_files = [f for f in os.listdir(dir_path) if os.path.isfile(os.path.join(dir_path, f))]
+            categories[d] = len(all_files)
+    return categories
+
 
 
 def initDirectories():
@@ -28,18 +40,19 @@ def initDirectories():
 
 
 def selectClass():
-    # Use the baseDirectory to get categories
+    # Use the baseDirectory to get categories with their image counts
     categories = getCategories(baseDirectory)
     if not categories:
         print("No categories found in the directory.")
         return None
 
-    print("Available Classes: ")
-    for i, class_name in enumerate(categories):
-        print(f"{i}: {class_name}")
+    print("Available Classes and Image Counts: ")
+    for i, (class_name, count) in enumerate(categories.items()):
+        print(f"{i}: {class_name} - {count} images")
 
     selected_index = int(input("Select the specific class to classify images for: "))
-    return categories[selected_index]
+    # Now, categories is a dictionary, so we need to adjust this line
+    return list(categories.keys())[selected_index]
 
 
 def handleInt(what):
@@ -186,7 +199,7 @@ def single_category_mode(ssh_client):
         plt.axis('off')
         plt.show(block=False)
 
-        print("Does this image belong to the selected category?")
+        print(f"Does this image belong to the {selected_class} category?")
         user_input = input(f"'y' for Yes, 'n' for No, 'd' to skip, or 'm' to return to the main menu: ")
 
         if user_input.lower() == 'm':
