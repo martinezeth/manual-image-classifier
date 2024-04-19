@@ -247,13 +247,19 @@ def main():
 
         global baseDirectory
         baseDirectory = config['Local']['classifications_path']
+        remote_directory = config['Paths']['remote_classifications_path']
 
-        mode = input("\n(1) Classify images across all categories\n(2) Classify images for a single category\n(3) Exit Program\nSelect Classification Mode: ")
+
+        mode = input("\n(1) Classify images across all categories\n(2) Classify images for a single category\n(3) Synchronize local and remote directories\n(4) Exit Program\nSelect Classification Mode: ")
         if mode == '1':
             original_classification_mode(ssh_client)
         elif mode == '2':
             single_category_mode(ssh_client)
         elif mode == '3':
+             print ("Synchronizing local and remote directories...")
+             ssh_handler.sync_directories(ssh_client, remote_directory, baseDirectory)
+             print ("Synchronization complete.")
+        elif mode == '4':
              print("Exiting Program.")
              break
         else:

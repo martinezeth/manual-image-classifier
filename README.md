@@ -30,6 +30,7 @@ Prior to first using this script, there are a few things that need to be configu
 2. Copy and paste the contents of the [sample.config.ini](sample.config.ini) into your created ```config.ini``` file.
 3. Make sure to put the server hostname, your SSH username and password in the respective fields. The ```classifications_path``` should be the path to the 'Classifications' folder on your local machine.
 (Or the main directory that holds subfolders with each representing classification categories.)
+4. The ```remote_classifications_path``` should be the path to the 'Classifications' folder on your server.
 
 IMPORTANT: When adding your information to your ```config.ini``` file, make sure to not include anything extra (surrounding quotation marks, brackets, etc.) around the text. 
 
